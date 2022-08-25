@@ -1,0 +1,67 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+{%  include 'status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>Colaboradores:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Criar Colaborador</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Nome</th>
+					<th>Telefone</th>
+				</tr>
+
+				{% for colaborador in colaboradores %}
+					<tr>
+
+						<td>{{colaborador.nome}}</td>
+						<td>{{colaborador.telefone}}</td>
+						<th><a href="{% url 'colaborador' colaborador.id %}">Visitar Perfil</a></th>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>Últimos 5 chamados</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					<th>Data do Chamado</th>
+					<th>Status</th>
+					<th>Usuário</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for chamado in chamados %}
+					<tr>
+						<td>{{chamado.data_criacao}}</td>
+						<td>{{chamado.status}}</td>
+						<td>{{chamado.colaborador}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'updateChamado' chamado.id %}">Update</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'deletarChamado' chamado.id %}">Deletar</a></td>
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+

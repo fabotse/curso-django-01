@@ -1,0 +1,23 @@
+{% extends 'main.html'%}
+
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class='row'>
+    <div class='col-md-6'>
+        <div class='card card-body'>
+
+            <p> Tem certeza que deseja deletar o chamado {{chamado}} do usuário {{chamado.colaborador}}?</p>
+
+            <form action='{% url 'deletarChamado' chamado.id %}' method='POST'>
+                {% csrf_token %} 
+                <a class='btn btn-warning' href="{% url 'index'%}">Cancelar</a>
+                <input class='btn btn-danger' type='submit' name='Confirmar'>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

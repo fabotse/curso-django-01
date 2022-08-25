@@ -1,0 +1,83 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Usuário:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Atualizar Usuário</a>
+			<a class="btn btn-outline-info btn-sm btn-block" href="{% url 'criarChamado' colaborador.id %}">Criar chamado</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Informações do Usuário</h5>
+			<hr>
+			<p><strong>Email:</strong> {{colaborador.email}}</p>
+			<p><strong>Telefone:</strong> {{colaborador.telefone}}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Chamados</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_chamados}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Id</th>
+					<th>Usuário</th>
+					<th>Data do Chamado</th>
+					<th>Categoria</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for chamado in chamados %}
+
+				<tr>
+					<td>{{chamado.id}}</td>
+					<td>{{chamado.colaborador}}</td>
+					<td>{{chamado.data_criacao}}</td>
+					<td>{{chamado.categoria}}</td>
+					<td>{{chamado.status}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'updateChamado' chamado.id %}">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'deletarChamado' chamado.id %}">Deletar</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
